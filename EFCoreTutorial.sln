@@ -5,9 +5,11 @@ VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C94D7166-F9D6-4C94-BCF9-9E1088E12DC6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFCoreTutorial.WebApi", "src\EFCoreTutorial.WebApi\EFCoreTutorial.WebApi.csproj", "{6D041141-58B8-4534-B769-D43BFD7D1E3A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFCoreTutorial.WebApi", "src\EFCoreTutorial.WebApi\EFCoreTutorial.WebApi.csproj", "{6D041141-58B8-4534-B769-D43BFD7D1E3A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFCoreTutorial.Data", "src\EFCoreTutorial.Data\EFCoreTutorial.Data.csproj", "{84D96B58-9FD2-42BC-A41D-2DAD218EF72E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFCoreTutorial.Data", "src\EFCoreTutorial.Data\EFCoreTutorial.Data.csproj", "{84D96B58-9FD2-42BC-A41D-2DAD218EF72E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFCoreTutorial.Common", "EFCoreTutorial.Common\EFCoreTutorial.Common.csproj", "{BC661E88-37BE-49BD-AB65-7AC720BC6309}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +25,10 @@ Global
 		{84D96B58-9FD2-42BC-A41D-2DAD218EF72E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84D96B58-9FD2-42BC-A41D-2DAD218EF72E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84D96B58-9FD2-42BC-A41D-2DAD218EF72E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC661E88-37BE-49BD-AB65-7AC720BC6309}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC661E88-37BE-49BD-AB65-7AC720BC6309}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC661E88-37BE-49BD-AB65-7AC720BC6309}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC661E88-37BE-49BD-AB65-7AC720BC6309}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

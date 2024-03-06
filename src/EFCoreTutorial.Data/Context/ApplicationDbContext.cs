@@ -1,4 +1,5 @@
-﻿using EFCoreTutorial.Data.Models;
+﻿using EFCoreTutorial.Common;
+using EFCoreTutorial.Data.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace EFCoreTutorial.Data.Context
@@ -23,7 +24,7 @@ namespace EFCoreTutorial.Data.Context
             if (!optionsBuilder.IsConfigured)
             {
                 // make the configurations
-                optionsBuilder.UseSqlServer("Server=localhost\\SQLSERVER;Database=EFCoreTutorial;Trusted_Connection=True;Encrypt=False;");
+                optionsBuilder.UseSqlServer(StringConstants.DbConnectionString);
             }
         }
 
@@ -66,7 +67,7 @@ namespace EFCoreTutorial.Data.Context
             modelBuilder.Entity<StudentAddress>(entity =>
             {
                 entity.ToTable("student_addresses");
-                entity.Property(i => i.Id).HasColumnName("id").UseIdentityColumn();
+                entity.Property(i => i.Id).HasColumnName("id").UseIdentityColumn().ValueGeneratedOnAdd();
                 entity.Property(i => i.City).HasColumnName("city").HasMaxLength(50);
                 entity.Property(i => i.District).HasColumnName("district").HasMaxLength(100);
                 entity.Property(i => i.Country).HasColumnName("country").HasMaxLength(50);
