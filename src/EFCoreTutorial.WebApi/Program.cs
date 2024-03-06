@@ -19,6 +19,7 @@ internal class Program
         builder.Services.AddLogging();
         builder.Services.AddDbContext<ApplicationDbContext>(config =>
         {
+            config.UseLazyLoadingProxies();
             config.UseSqlServer(StringConstants.DbConnectionString);
             config.EnableSensitiveDataLogging();
         });

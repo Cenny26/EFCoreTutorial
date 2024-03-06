@@ -9,7 +9,7 @@
         public int Number { get; set; }
         public int AddressId { get; set; }
         public virtual StudentAddress Address { get; set; }
-        public ICollection<Book> Books { get; set; }
+        public virtual ICollection<Book> Books { get; set; }
         public virtual ICollection<Course> Courses { get; set; }
     }
 }

@@ -7,6 +7,6 @@
         public string District { get; set; }
         public string FullAddress { get; set; }
         public string Country { get; set; }
-        public Student Student { get; set; }
+        public virtual Student Student { get; set; }
     }
 }

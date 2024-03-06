@@ -19,8 +19,7 @@ namespace EFCoreTutorial.WebApi.Controllers
             this.dbContext = dbContext;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Get()
+        private async Task SelectPrac()
         {
             #region Prac
             var allStudent = await dbContext.Students.ToListAsync();
@@ -38,7 +37,7 @@ namespace EFCoreTutorial.WebApi.Controllers
             var nonFilteredStudents = dbContext.Students.AsQueryable();
 
             if (!string.IsNullOrEmpty(filter.FirstName))
-                nonFilteredStudents = nonFilteredStudents.Where(i => i.FirstName ==  filter.FirstName);
+                nonFilteredStudents = nonFilteredStudents.Where(i => i.FirstName == filter.FirstName);
 
             if (!string.IsNullOrEmpty(filter.LastName))
                 nonFilteredStudents = nonFilteredStudents.Where(i => i.LastName == filter.LastName);
@@ -48,7 +47,39 @@ namespace EFCoreTutorial.WebApi.Controllers
 
             var filteredStudentList = await nonFilteredStudents.ToListAsync();
             #endregion
+        }
 
+        private async Task EagerLoading()
+        {
+            #region Prac
+            var student = await dbContext.Students
+                .Include(i => i.Books)
+                .FirstOrDefaultAsync(i => i.LastName == "Huseynov");
+            #endregion
+        }
+
+        private async Task LazyLoading()
+        {
+            #region Prac
+            var students = await dbContext.Students.ToListAsync();
+            var filteredStudent = await dbContext.Students
+                .FirstOrDefaultAsync(i => i.LastName == "Huseynov");
+            var filteredBooks = filteredStudent.Books;
+            var filteredCourses = filteredStudent.Courses;
+
+            foreach (var student in students)
+            {
+                foreach (var book in student.Books)
+                {
+                    await Console.Out.WriteLineAsync(book.Name);
+                }
+            }
+            #endregion
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
             var students = await dbContext.Students.AsNoTracking().ToListAsync();
 
             return Ok(students);
