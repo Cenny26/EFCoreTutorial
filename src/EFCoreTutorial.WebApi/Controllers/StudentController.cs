@@ -1,4 +1,5 @@
-﻿using EFCoreTutorial.Data.Context;
+﻿using EFCoreTutorial.Common;
+using EFCoreTutorial.Data.Context;
 using EFCoreTutorial.Data.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -21,6 +22,33 @@ namespace EFCoreTutorial.WebApi.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
+            #region Prac
+            var allStudent = await dbContext.Students.ToListAsync();
+
+            var lastNameFiltered = dbContext.Students
+                .Where(i => i.LastName == "Huseynov")
+                .OrderBy(i => i.Number)
+                .ToListAsync();
+
+            var firstLastName = await dbContext.Students
+                .Select(i => i.LastName)
+                .FirstOrDefaultAsync();
+
+            StudentFilter filter = new StudentFilter() { FirstName = "Kanan" };
+            var nonFilteredStudents = dbContext.Students.AsQueryable();
+
+            if (!string.IsNullOrEmpty(filter.FirstName))
+                nonFilteredStudents = nonFilteredStudents.Where(i => i.FirstName ==  filter.FirstName);
+
+            if (!string.IsNullOrEmpty(filter.LastName))
+                nonFilteredStudents = nonFilteredStudents.Where(i => i.LastName == filter.LastName);
+
+            if (filter.Number.HasValue)
+                nonFilteredStudents = nonFilteredStudents.Where(i => i.Number == filter.Number);
+
+            var filteredStudentList = await nonFilteredStudents.ToListAsync();
+            #endregion
+
             var students = await dbContext.Students.AsNoTracking().ToListAsync();
 
             return Ok(students);
